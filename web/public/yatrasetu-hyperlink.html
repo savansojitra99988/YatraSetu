@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YatraSetu — Gujarat Pilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+:root{--fontSize:14px;--lineHeight:22px;--titleFont:"Poppins",sans-serif;--bodyFont:"Inter",sans-serif;--transition:0.18s;--bg1:#f0ece6;--bg2:#e2dbd3;--bgInverse:#1a2744;--bgInverse2:#253354;--sunsetOrange:#e8591a;--skyBlue:#1d6fa3;--sandGold:#c9861a;--oceanTeal:#0e7490;--forestGreen:#2d6a4f;--crimsonDark:#b91c1c;--accent1:var(--sunsetOrange);--accent2:var(--skyBlue)}
+body.sepiamode{--bg1:#ede8df;--bg2:#d8cfc4}
+body.darkmode{--bg1:#d4cfc8;--bg2:#c5bfb8;--bgInverse:#0f172a;--bgInverse2:#1a2744}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg1);font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse)}
+a{text-decoration:none;color:var(--accent1)}
+h1,h2,h3,h4,h5,h6{margin:0}
+
+.ys{display:grid;grid-template-columns:140px 22px auto;height:100vh;width:100vw;background:var(--bg1)}
+
+/* SIDEBAR */
+.ys-menu{background:var(--bgInverse);position:sticky;top:0;height:100vh;z-index:1000;color:var(--bg1);padding:38px;display:flex;flex-direction:column;align-items:stretch;gap:0;line-height:10px}
+#ys-main-menu{display:none}
+.ys-menu-overlay{position:fixed;left:162px;top:0;bottom:0;right:0;background:var(--bg1);z-index:999;pointer-events:none;opacity:0;transition:opacity .22s;overflow-y:auto;padding:80px 80px 80px 100px;font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse)}
+#ys-main-menu:checked ~ .ys-menu-overlay{opacity:1;pointer-events:auto}
+.ys-menu-click{aspect-ratio:1;margin-bottom:28px;cursor:pointer;display:block}
+.ys-menu-click1{position:relative;aspect-ratio:1;background:var(--accent2);background-image:repeating-linear-gradient(-45deg,transparent 0px 2px,var(--bgInverse) 2px 5px);margin:0 11px 15px 0;display:grid;transition:background-color var(--transition)}
+.ys-menu-click1::before,.ys-menu-click1::after{content:"";display:block;background:var(--bgInverse2);position:absolute}
+.ys-menu-click1::before{height:9px;width:5px;top:0;right:-10px}
+.ys-menu-click1::after{height:5px;width:9px;left:0;bottom:-10px}
+.ys-menu-click2{background:var(--bgInverse);margin:10px -15px -15px 10px;aspect-ratio:1;padding:5px}
+.ys-menu-click2 div{height:100%;width:100%;background:var(--bg2);color:var(--bgInverse);display:flex;justify-content:flex-end;align-items:flex-end;overflow:hidden}
+.ys-menu-click2 div i{display:block;margin:-8px;font-size:35px}
+.ys-menu-click3{background:var(--bgInverse2);padding:2px 0;text-align:center;color:var(--bg1);font:800 11px/20px var(--bodyFont);letter-spacing:1px;text-transform:uppercase}
+.ys-menu-click2 .ph-duotone::before{opacity:1!important;color:var(--accent1);transition:color var(--transition)}
+.ys-menu-click:hover .ys-menu-click1{background-color:var(--accent1)}
+.ys-menu-click:hover .ys-menu-click2 .ph-duotone::before{color:var(--accent2)}
+.ys-menu-divide{flex-grow:1;display:flex;flex-direction:column;align-items:center}
+.ys-menu-divide div{flex-grow:1;width:1px;background:var(--bgInverse2)}
+.ys-menu-links{display:flex;flex-direction:column;align-items:center;gap:0}
+.ys-menu-links::before,.ys-menu-links::after{content:"";display:block;height:9px;width:9px;background:var(--bgInverse2);margin:18px 0}
+.ys-menu-links a{color:var(--bg2);font-size:22px;transition:color var(--transition);position:relative;padding:7px}
+.ys-menu-links a:hover{color:var(--accent2)}
+.ys-menu-links a.alert:hover{color:var(--accent1)}
+.ys-menu-links a .nb{position:absolute;padding:2px 0;font:800 9px/10px var(--bodyFont);background:var(--accent2);color:var(--bgInverse);top:-2px;left:22px;border:2px solid var(--bgInverse);width:18px;text-align:center;border-radius:4px}
+.ys-menu-brand{height:130px;display:flex;align-items:flex-end}
+.ys-brand-vert{font:900 28px/24px var(--titleFont);transform:rotate(-90deg);transform-origin:top left;width:100px;height:0;color:var(--bg1);white-space:nowrap}
+.ys-brand-vert b{color:var(--accent2);position:relative}
+.ys-brand-vert b::after{content:"";position:absolute;top:2px;right:0;height:7px;width:22px;background:repeating-linear-gradient(-45deg,var(--accent1) 0px 2px,transparent 2px 4px)}
+.ys-menu-brand:hover .ys-brand-vert b{color:var(--accent1)}
+.ys-slant{background:repeating-linear-gradient(-45deg,var(--accent2) 0px 4px,transparent 4px 8px);position:sticky;top:0;height:100vh}
+.ys-body{height:100vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--accent1) var(--bg2)}
+.ys-wrapper{margin:0 auto;padding:70px 90px;max-width:1800px;min-height:150vh}
+
+/* BANNER */
+.ys-ban{margin:-70px -90px;padding:70px 90px;overflow:hidden}
+.ys-banner{display:grid;grid-template-columns:500px 9px 1fr;gap:45px;margin-bottom:50px}
+.ys-banner-top{grid-column:1/4}
+.ys-banner-top::after{content:"";display:block;height:5px;background:linear-gradient(to right,var(--accent1) 270px,var(--bg1) 270px 280px,var(--accent2) 280px 550px,var(--bg1) 550px 560px,var(--bgInverse) 560px 100%);margin-top:45px}
+.ys-banner-top1{display:flex;gap:10px}
+.sc{display:grid;grid-template-columns:auto 1fr;gap:0 18px;white-space:nowrap;text-transform:uppercase;font:900 14px/12px var(--bodyFont);width:270px}
+.sc i{height:100%;display:flex;align-items:center;justify-content:center;grid-row:1/3;font-size:18px;background:repeating-linear-gradient(-45deg,var(--bgInverse) 0px 3px,transparent 3px 5px);aspect-ratio:1;color:var(--bg1);outline:solid 9px var(--bg1);outline-offset:-22px}
+.sc i::before{height:7px;width:7px;background:var(--accent1);content:"";display:block;position:relative}
+.sc:nth-child(2) i::before{background:var(--accent2)}
+.sc:nth-child(3) i::before{background:var(--sandGold)}
+.sc b{display:block;background:var(--bgInverse);padding:6px;margin-bottom:4px;color:var(--bg1);font:800 11px/10px var(--bodyFont);max-width:fit-content;letter-spacing:1px;box-shadow:5px 0px 0px var(--bg1),10px 0px 0px var(--accent1)}
+.sc:nth-child(2) b{box-shadow:5px 0px 0px var(--bg1),10px 0px 0px var(--accent2)}
+.sc:nth-child(3) b{box-shadow:5px 0px 0px var(--bg1),10px 0px 0px var(--sandGold)}
+.btr{flex-grow:1;display:flex;justify-content:flex-end;align-items:center;gap:16px}
+.bn{font:900 145px/125px var(--titleFont);margin-left:-4px;text-transform:uppercase;white-space:nowrap;color:var(--bgInverse)}
+.bn b{display:flex;font:900 145px/125px var(--titleFont);color:var(--accent2);align-items:flex-end;position:relative}
+.bn b::before{content:"";position:absolute;top:10px;right:0;left:370px;background:repeating-linear-gradient(-45deg,var(--accent1) 0px 5px,transparent 5px 8px);height:70px}
+.bn b::after{content:"est.2026";font:900 30px/15px var(--bodyFont);margin:0 0 8px 0;left:278px;right:-4px;color:var(--bgInverse);background:var(--bg1);padding:32px 5px 9px 0;position:absolute;text-align:right}
+.bn div{font:200 22px/15px var(--bodyFont);color:var(--bgInverse);margin:18px 0 0 5px}
+.bb{font:var(--fontSize)/var(--lineHeight) var(--bodyFont);text-align:justify;position:relative;padding-left:70px;margin:28px 0 36px;padding-top:28px}
+.bb::before{content:"";position:absolute;top:0;left:0;bottom:0;width:38px;background:repeating-linear-gradient(-45deg,var(--bg2) 0px 4px,transparent 4px 8px)}
+.bb::after{content:"";position:absolute;top:0;left:80px;right:0;height:1px;background:var(--bgInverse)}
+.bb em{font-weight:700;color:var(--accent1);font-style:normal}
+.bb strong{font:800 calc(var(--fontSize) - 2px)/calc(var(--lineHeight) - 2px) var(--bodyFont);background:var(--accent1);letter-spacing:1px;padding:2px 5px;color:var(--bg1);text-transform:uppercase;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cta{background:var(--accent1);padding:36px 36px 40px 170px;color:var(--bg1);display:grid;grid-template-columns:1fr auto;gap:36px;position:relative;align-items:center;cursor:pointer;transition:filter .2s;text-decoration:none}
+.cta:hover{filter:brightness(1.08)}
+.cta-ic{font-size:180px;line-height:0;position:absolute;z-index:1;top:-34px;left:0}
+.cta-ic .ph-duotone::before{color:var(--accent2);opacity:1!important}
+.cta-l{font:900 36px/30px var(--titleFont);text-transform:uppercase;white-space:nowrap;display:flex;flex-direction:column;letter-spacing:-.5px}
+.cta-l div{font:400 16px/12px var(--titleFont);margin:0 0 12px;letter-spacing:1px;order:-1}
+.cta-r{position:absolute;right:18px;bottom:18px;font-size:90px}
+.cta-r .ph-duotone::before{color:var(--accent2);opacity:1!important}
+.cbd{display:flex;gap:45px;align-items:center;margin-top:45px}
+.cbd::before{content:"";height:9px;width:9px;background:var(--bgInverse);display:block}
+.cbd::after{content:"";height:1px;flex-grow:1;background:var(--bgInverse);display:block}
+.bd{display:flex;flex-direction:column;align-items:center;margin-top:10px;gap:45px}
+.bd div{width:1px;flex-grow:1;background:var(--bgInverse)}
+.bd::before,.bd::after{content:"";display:block;height:9px;width:9px;background:var(--bgInverse)}
+.bi{position:relative;border-radius:8px;overflow:visible;min-height:400px}
+.bi2{background:linear-gradient(to bottom,var(--accent2) 50%,transparent calc(100% - 55px));position:absolute;bottom:0;right:0;left:0;top:10px;border-radius:6px;overflow:hidden}
+.brt{position:absolute;z-index:1;font:900 260px/190px var(--titleFont);text-transform:uppercase;color:var(--bg1);height:100%;width:100%;display:flex;flex-direction:column;align-items:stretch;overflow:hidden;letter-spacing:-10px;padding:95px 0 0 70px;text-align:right}
+.brt b{display:block}
+.brt b:nth-child(2){margin-right:-22px;display:flex}
+.brt b:nth-child(2)::before{content:"";display:block;margin:45px 45px 0 12px;background:repeating-linear-gradient(-45deg,var(--bg1) 0px 5px,transparent 5px 8px);flex-grow:1}
+.hd{display:flex;align-items:center;gap:45px;width:100%;margin:50px 0}
+.hd div{height:1px;flex-grow:1;background:var(--bgInverse)}
+.hd::before,.hd::after{content:"";display:block;height:9px;width:9px;background:var(--bgInverse)}
+
+/* CAT BAR */
+.cat{background:var(--bgInverse);color:var(--bg1);padding:36px 46px;font:900 38px/33px var(--titleFont);text-transform:uppercase;display:flex;gap:45px;align-items:center}
+.cat::after{content:"";height:9px;width:9px;background:var(--bgInverse2);margin-right:8px}
+.cn{color:var(--bg1);padding-left:14px;position:relative}
+.cn::before{content:"";position:absolute;top:3px;bottom:3px;left:-45px;width:28px;background:repeating-linear-gradient(-45deg,var(--bgInverse2) 0px 4px,transparent 4px 8px)}
+.cn b{color:var(--accent2);padding-left:4px}
+.cn:hover b{color:var(--accent1)}
+.cl{display:flex;align-items:center;position:relative}
+.cl::before{height:9px;width:9px;background:var(--bgInverse2);margin-right:36px;content:"";display:block}
+.cl a{color:var(--bg1);font-size:26px;display:flex;justify-content:center;align-items:flex-end;position:relative;padding:18px 9px}
+.cl a span{font:800 calc(var(--fontSize)*.7)/calc(var(--fontSize)*.8) var(--bodyFont);position:absolute;background:var(--accent2);padding:6px;color:var(--bgInverse);border-radius:2px;margin-bottom:38px;opacity:0;pointer-events:none;letter-spacing:1px;white-space:nowrap}
+.cl a span::before{position:absolute;content:"";bottom:-9px;border:5px solid transparent;border-top-color:var(--accent2);left:50%;transform:translateX(-50%)}
+.cl a:hover{color:var(--accent1)}
+.cl a:hover span{opacity:1}
+.cd{display:flex;gap:45px;align-items:center;flex-grow:1}
+.cd::before{content:"";height:9px;width:9px;background:var(--bgInverse2)}
+.cd::after{content:"";height:1px;background:var(--bgInverse2);flex-grow:1}
+.c2{display:flex;margin:22px 0;gap:28px;align-items:center}
+.c2 span{display:block;height:1px;flex-grow:3;background:var(--bgInverse)}
+.c2l{height:9px;flex-grow:1;background:repeating-linear-gradient(-45deg,transparent 0px 5px,var(--bgInverse) 5px 8px)}
+.c2r{display:flex;gap:9px;align-items:center}
+.c2r div,.c2r::before,.c2r::after{content:"";display:block;height:9px;width:9px;background:var(--bgInverse)}
+
+/* GENRES */
+.gg{display:grid;grid-template-columns:240px auto;gap:45px;margin-top:45px}
+.gl{background:var(--accent1)}
+.gr{display:grid;gap:45px}
+.ga{padding:45px 45px 0 0;text-align:right;position:sticky;top:0}
+.ga a{display:block;font:800 13px/14px var(--bodyFont);color:var(--bg1);text-transform:uppercase;padding:9px 0 0 30px;letter-spacing:.5px}
+.ga a:hover{color:var(--bgInverse)}
+.ge{display:grid;grid-template-columns:9px auto;gap:45px;scroll-margin-top:45px}
+.gel{background:var(--bgInverse);width:1px;margin:0 auto}
+.get{position:relative}
+.gei{position:absolute;z-index:1;pointer-events:none;color:var(--bg1);font-size:140px;top:-46px;right:28px}
+.gei .ph-duotone::before{color:var(--accent2);opacity:1!important}
+.gen{display:block;font:900 44px/38px var(--titleFont);text-transform:uppercase;color:var(--bgInverse);margin-bottom:22px}
+.ged{width:52%;padding-left:70px;position:relative;font:var(--fontSize)/var(--lineHeight) var(--bodyFont)}
+.ged::before{content:"";position:absolute;top:0;left:0;bottom:0;width:38px;background:repeating-linear-gradient(-45deg,var(--accent2) 0px 4px,transparent 4px 8px)}
+.ged strong{font:800 calc(var(--fontSize) - 2px)/calc(var(--lineHeight) - 2px) var(--bodyFont);background:var(--accent1);letter-spacing:1px;padding:2px 5px;color:var(--bg1);text-transform:uppercase;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.ged em{font-weight:700;color:var(--accent1);font-style:normal}
+.geb{display:grid;grid-template-columns:160px auto;grid-template-rows:repeat(20,auto);gap:0 45px;margin-top:45px}
+.geb input[type=radio]{display:none}
+.sc2{grid-column:2/3;grid-row:1/21;opacity:0;pointer-events:none;transition:opacity .18s}
+.sl{cursor:pointer;display:block;background:var(--bgInverse);padding:10px;margin-bottom:5px;color:var(--bg1);font:800 var(--fontSize)/var(--fontSize) var(--bodyFont);text-transform:uppercase;letter-spacing:1px;box-shadow:5px 0px 0px var(--bg1),10px 0px 0px var(--accent2);transition:box-shadow .15s}
+.sl:hover,input[type=radio]:checked + .sl{box-shadow:5px 0px 0px var(--bg1),10px 0px 0px var(--accent1)}
+#t1:checked ~ .t1,#t2:checked ~ .t2,#t3:checked ~ .t3,#m1:checked ~ .m1,#m2:checked ~ .m2,#s1:checked ~ .s1,#s2:checked ~ .s2,#s3:checked ~ .s3{opacity:1;pointer-events:auto}
+
+/* CARDS */
+.dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.dc{background:var(--bg1);border:1px solid var(--bg2);padding:28px;position:relative;cursor:pointer;transition:transform .18s}
+.dc::before{content:"";position:absolute;top:7px;right:-7px;bottom:-7px;left:7px;background:repeating-linear-gradient(-45deg,var(--accent2) 0px 3px,transparent 3px 6px);z-index:-1;transition:background .18s}
+.dc:hover{transform:translate(-3px,-3px)}
+.dc:hover::before{background:repeating-linear-gradient(-45deg,var(--accent1) 0px 3px,transparent 3px 6px)}
+.dt{font:800 10px/10px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;color:var(--accent1);margin-bottom:8px}
+.dc h3{font:900 20px/20px var(--titleFont);margin-bottom:10px}
+.dc p{font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse2);margin:0 0 14px}
+.df{display:flex;justify-content:space-between;font:700 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:.5px}
+.pg{background:#dcfce7;color:#166534;padding:3px 8px;border-radius:2px;border:1px solid #bbf7d0;font:800 10px/12px var(--bodyFont)}
+.pm{background:#fef9c3;color:#854d0e;padding:3px 8px;border-radius:2px;border:1px solid #fde68a;font:800 10px/12px var(--bodyFont)}
+.pa{background:#fee2e2;color:#991b1b;padding:3px 8px;border-radius:2px;border:1px solid #fecaca;font:800 10px/12px var(--bodyFont)}
+.rc{background:var(--bg1);border:1px solid var(--bg2);padding:28px;position:relative}
+.rc::after{content:"";position:absolute;bottom:-9px;left:9px;right:-9px;top:9px;background:repeating-linear-gradient(-45deg,var(--accent1) 0px 3px,transparent 3px 6px);z-index:-1}
+.rl{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--bg2);font:var(--fontSize)/var(--lineHeight) var(--bodyFont)}
+.rl:last-child{border-bottom:none}
+.rli{width:38px;height:38px;background:var(--bgInverse);display:flex;align-items:center;justify-content:center;color:var(--bg1);font-size:20px;flex-shrink:0}
+.rli2 b{display:block;font:800 13px/13px var(--bodyFont)}
+.rli2 span{font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse2)}
+.et{width:100%;border-collapse:collapse;margin-top:16px}
+.et th{text-align:left;font:800 10px/10px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;padding:8px 12px;background:var(--bgInverse);color:var(--bg1)}
+.et td{padding:10px 12px;border-bottom:1px solid var(--bg2);font:var(--fontSize)/var(--lineHeight) var(--bodyFont)}
+.et tr:hover td{background:var(--bg2)}
+.dg2{width:9px;height:9px;background:#22c55e;border-radius:50%;display:inline-block;margin-right:6px}
+.da{width:9px;height:9px;background:#f59e0b;border-radius:50%;display:inline-block;margin-right:6px}
+.dr{width:9px;height:9px;background:#ef4444;border-radius:50%;display:inline-block;margin-right:6px}
+
+/* SETTINGS */
+.ys-menu-overlay h2{font:900 42px/38px var(--titleFont);margin-bottom:30px;text-transform:uppercase}
+.ys-menu-overlay h3{font:800 16px/16px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;margin:28px 0 10px;color:var(--accent1)}
+.sc3{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--bgInverse);color:var(--bg1);border:none;font:800 13px/13px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;cursor:pointer;margin-bottom:36px}
+.sc3:hover{background:var(--accent1)}
+.mr{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.mr input[type=range]{flex-grow:1;accent-color:var(--accent1)}
+.ml{font:700 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;color:var(--bgInverse2)}
+#yct{display:inline-flex;padding:8px 16px;background:var(--bg2);border:none;cursor:pointer;font:700 12px/12px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;margin:6px 0;transition:background .15s}
+#yct:hover{background:var(--accent2);color:var(--bg1)}
+#yct.active{background:var(--accent1);color:var(--bg1)}
+.fb{display:flex;gap:4px;margin:8px 0}
+.fb button{width:44px;height:36px;background:var(--bgInverse);color:var(--bg1);border:none;font:800 13px/13px var(--bodyFont);cursor:pointer;transition:background .15s}
+.fb button:hover{background:var(--accent1)}
+.pg2{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pb{padding:8px 14px;border:none;font:700 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:.5px;cursor:pointer;background:var(--bgInverse);color:var(--bg1);transition:all .15s;position:relative}
+.pb::after{content:"";position:absolute;bottom:-4px;right:-4px;width:100%;height:100%;background:repeating-linear-gradient(-45deg,var(--accent2) 0px 2px,transparent 2px 4px);z-index:-1}
+.pb:hover{background:var(--accent1)}
+.pb.active{background:var(--accent1);outline:3px solid var(--accent2)}
+
+/* DARK */
+.darkmode .ys{background:#1a2030}
+.darkmode .ys-menu-overlay{background:#1a2030;color:var(--bg1)}
+.darkmode .dc{background:#1e2840;border-color:#253354;color:var(--bg1)}
+.darkmode .rc{background:#1e2840;border-color:#253354}
+.darkmode .rl{border-color:#253354}
+.darkmode .et td{border-color:#253354}
+.darkmode .et tr:hover td{background:#253354}
+.darkmode .bn b::after{background:#1a2030}
+.darkmode .brt{color:#1a2030}
+.contrastmode .ys{filter:contrast(92%) grayscale(20%)}
+
+@media(max-width:1500px){.btr{display:none}}
+@media(max-height:780px){.ys-menu-brand,.ys-menu-divide:last-of-type{display:none}}
+
+/* PALETTES */
+.p0{--accent1:var(--sunsetOrange);--accent2:var(--skyBlue)}
+.p1{--accent1:var(--oceanTeal);--accent2:var(--skyBlue)}
+.p2{--accent1:var(--forestGreen);--accent2:var(--sandGold)}
+.p3{--accent1:var(--skyBlue);--accent2:#5ba4cc}
+.p4{--accent1:var(--sandGold);--accent2:var(--sunsetOrange)}
+.p5{--accent1:#be185d;--accent2:#f9a8d4}
+.p6{--accent1:var(--oceanTeal);--accent2:var(--forestGreen)}
+.p7{--accent1:var(--sunsetOrange);--accent2:var(--crimsonDark)}
+.p8{--accent1:#5b21b6;--accent2:var(--oceanTeal)}
+.p9{--accent1:var(--skyBlue);--accent2:var(--forestGreen)}
+.p10{--accent1:#c2410c;--accent2:#d97706}
+.p11{--accent1:var(--forestGreen);--accent2:#67c8d8}
+.p12{--accent1:var(--bgInverse);--accent2:var(--skyBlue)}
+.p13{--accent1:var(--bgInverse);--accent2:var(--sunsetOrange)}
+.p14{--accent1:var(--bgInverse);--accent2:var(--sandGold)}
+.p15{--accent1:#c2410c;--accent2:#d97706}
+.p16{--accent1:#be185d;--accent2:#7e22ce}
+.p17{--accent1:#b45309;--accent2:#0891b2}
+</style>
+</head>
+<body>
+<div id="yr" class="p0">
+<div class="ys">
+
+<nav class="ys-menu">
+  <input type="checkbox" id="ys-main-menu">
+  <div class="ys-menu-overlay">
+    <h2>Settings</h2>
+    <label for="ys-main-menu"><button class="sc3">&#8592; Close</button></label>
+    <h3>Display Mode</h3>
+    <div class="mr"><span class="ml">Light</span><input type="range" id="ym" min="1" max="3" value="1"><span class="ml">Dark</span></div>
+    <p style="font:12px/18px var(--bodyFont);color:var(--bgInverse2);">Light &rarr; Sepia &rarr; Dark</p>
+    <h3>Low Contrast</h3>
+    <button id="yct">Toggle Contrast Filter</button>
+    <h3>Font Size</h3>
+    <div class="fb"><button id="fu">A+</button><button id="fr">A</button><button id="fd">a&minus;</button></div>
+    <h3>Basic Palettes</h3>
+    <div class="pg2">
+      <button class="pb active" data-p="p0">&#127749; Sunrise</button>
+      <button class="pb" data-p="p1">&#127754; Ocean</button>
+      <button class="pb" data-p="p2">&#127807; Forest</button>
+      <button class="pb" data-p="p3">&#9925; Sky</button>
+      <button class="pb" data-p="p4">&#127964; Desert</button>
+      <button class="pb" data-p="p5">&#128156; Fuchsia</button>
+    </div>
+    <h3>Premium Palettes</h3>
+    <div class="pg2">
+      <button class="pb" data-p="p6">&#127783; Monsoon</button>
+      <button class="pb" data-p="p7">&#127798; Spice Route</button>
+      <button class="pb" data-p="p8">&#129412; Peacock</button>
+      <button class="pb" data-p="p9">&#127956; Himalaya</button>
+      <button class="pb" data-p="p10">&#127983; Rajasthan</button>
+      <button class="pb" data-p="p11">&#127796; Kerala</button>
+    </div>
+    <h3>Monochrome</h3>
+    <div class="pg2">
+      <button class="pb" data-p="p12">&#127769; Midnight</button>
+      <button class="pb" data-p="p13">&#128394; Ink</button>
+      <button class="pb" data-p="p14">&#129693; Slate</button>
+    </div>
+    <h3>Festival</h3>
+    <div class="pg2">
+      <button class="pb" data-p="p15">&#129486; Diwali</button>
+      <button class="pb" data-p="p16">&#127912; Holi</button>
+      <button class="pb" data-p="p17">&#128131; Navratri</button>
+    </div>
+  </div>
+  <label for="ys-main-menu" class="ys-menu-click">
+    <div class="ys-menu-click1"><div class="ys-menu-click2"><div><i class="ph-duotone ph-map-pin-area"></i></div></div></div>
+    <div class="ys-menu-click3">menu</div>
+  </label>
+  <div class="ys-menu-divide"><div></div></div>
+  <div class="ys-menu-links">
+    <a href="#yt"><i class="ph ph-arrow-circle-up"></i></a>
+    <a href="#"><i class="ph ph-house"></i></a>
+    <a href="#" class="alert"><div class="nb">4</div><i class="ph ph-bell"></i></a>
+    <a href="#" class="alert"><div class="nb">1</div><i class="ph ph-paper-plane-tilt"></i></a>
+    <a href="#"><i class="ph ph-user-circle"></i></a>
+    <a href="#"><i class="ph ph-siren"></i></a>
+    <a href="#yb"><i class="ph ph-arrow-circle-down"></i></a>
+  </div>
+  <div class="ys-menu-divide"><div></div></div>
+  <div class="ys-menu-brand"><div class="ys-brand-vert">Yatra<b>Setu</b></div></div>
+</nav>
+
+<div class="ys-slant"></div>
+
+<div class="ys-body">
+<div id="yt"></div>
+<div class="ys-wrapper">
+
+<div class="ys-ban">
+<div class="ys-banner">
+  <div class="ys-banner-top">
+    <div class="ys-banner-top1">
+      <div class="sc"><i></i><b>Gujarat Pilot</b>Phase 1 &middot; SIH 2026</div>
+      <div class="sc"><i></i><b>8 Destinations</b>Reality-checked</div>
+      <div class="sc"><i></i><b>All Travellers</b>Welcome</div>
+      <div class="btr"><i class="ph ph-compass" style="font-size:32px;color:var(--accent1);"></i><div style="font:900 28px/24px var(--titleFont);">Yatra<b style="color:var(--accent1)">Setu</b></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="bn">YATRA<b>SETU</b><div>your intelligent journey companion</div></div>
+    <div class="bb">Welcome to <em>YatraSetu</em> &mdash; a <strong>no-guess, no-stress</strong> travel intelligence platform that reads your intent alongside real on-ground conditions, then hands you a clear <em>GO / MODIFY / ALTERNATIVE</em> decision. Register with your <strong>travel alias</strong> and start your first Gujarat journey today!</div>
+    <a href="#gd" class="cta">
+      <div class="cta-ic"><i class="ph-duotone ph-compass"></i></div>
+      <div class="cta-l"><div>SIH 2026 &middot; PS ID 26204</div>Explore<br>Decision Engine</div>
+      <div class="cta-r"><i class="ph-duotone ph-cursor-click"></i></div>
+    </a>
+    <div class="cbd"></div>
+  </div>
+  <div class="bd"><div></div></div>
+  <div class="bi">
+    <div class="brt"><b>yatra</b><b>setu</b></div>
+    <div class="bi2"></div>
+  </div>
+</div>
+</div>
+
+<div class="cat">
+  <a href="#" class="cn">Yatra<b>Setu</b> Handbook</a>
+  <div class="cl">
+    <a href="#"><span>Get Started</span><i class="ph ph-hand-waving"></i></a>
+    <a href="#"><span>Guidelines</span><i class="ph ph-ruler"></i></a>
+    <a href="#"><span>Personalize</span><i class="ph ph-palette"></i></a>
+    <a href="#"><span>Open API</span><i class="ph ph-code"></i></a>
+    <a href="#"><span>Credits</span><i class="ph ph-smiley"></i></a>
+  </div>
+  <div class="cd"></div>
+</div>
+<div class="c2">
+  <div class="c2l"><div></div></div>
+  <span></span>
+  <div class="c2r"><div></div></div>
+</div>
+
+<div style="padding:50px 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;">
+  <div style="background:var(--bg2);padding:28px;position:relative;"><div style="position:absolute;top:-5px;left:-5px;right:5px;bottom:5px;background:repeating-linear-gradient(-45deg,var(--accent1) 0px 2px,transparent 2px 5px);z-index:-1;"></div><div style="font:800 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;color:var(--accent1);margin-bottom:8px;">&#9992;&#65039; Discovery</div><div style="font:900 20px/20px var(--titleFont);margin-bottom:10px;">Where should I go?</div><div style="font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse2);">Profile-matched destination recommendations with suitability scoring and transparent reasoning.</div></div>
+  <div style="background:var(--bg2);padding:28px;position:relative;"><div style="position:absolute;top:-5px;left:-5px;right:5px;bottom:5px;background:repeating-linear-gradient(-45deg,var(--accent2) 0px 2px,transparent 2px 5px);z-index:-1;"></div><div style="font:800 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;color:var(--accent2);margin-bottom:8px;">&#128652; Mobility</div><div style="font:900 20px/20px var(--titleFont);margin-bottom:10px;">How do I get there?</div><div style="font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse2);">Multimodal routing with Smart Arrival Points, local rental options and offline-ready trip packs.</div></div>
+  <div style="background:var(--bg2);padding:28px;position:relative;"><div style="position:absolute;top:-5px;left:-5px;right:5px;bottom:5px;background:repeating-linear-gradient(-45deg,var(--sandGold) 0px 2px,transparent 2px 5px);z-index:-1;"></div><div style="font:800 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;color:var(--sandGold);margin-bottom:8px;">&#128737;&#65039; Safety</div><div style="font:900 20px/20px var(--titleFont);margin-bottom:10px;">What if things change?</div><div style="font:var(--fontSize)/var(--lineHeight) var(--bodyFont);color:var(--bgInverse2);">One-tap SOS simulation, live safety indicators, local mechanics on standby, emergency contacts.</div></div>
+</div>
+
+<div class="gg" id="gd">
+<div class="gl"><div class="ga"><a href="#sd">Discover</a><a href="#sm">Mobility</a><a href="#ss">Safety &amp; SOS</a></div></div>
+<div class="gr">
+
+<div class="ge" id="sd">
+  <div class="gel"></div>
+  <div>
+    <div class="get">
+      <div class="gei"><i class="ph-duotone ph-compass"></i></div>
+      <a href="#" class="gen">Discover</a>
+      <div class="ged">From <em>ancient stepwells</em> to <em>wild sanctuaries</em>, YatraSetu maps your travel intent against real conditions. Not another list &mdash; <strong>a better decision.</strong></div>
+    </div>
+    <div class="geb">
+      <input type="radio" name="dt" id="t1" checked><label class="sl" for="t1">Heritage Sites</label>
+      <input type="radio" name="dt" id="t2"><label class="sl" for="t2">Nature Escapes</label>
+      <input type="radio" name="dt" id="t3"><label class="sl" for="t3">Coastal Gems</label>
+      <div class="sc2 t1"><div class="dg">
+        <div class="dc"><div class="dt">&#127963;&#65039; Heritage &middot; Patan</div><h3>Rani ki Vav</h3><p>UNESCO stepwell. 11th-century Maru-Gurjara marvel with intricate sculptural panels across 7 levels.</p><div class="df"><span>Crowd: <b>Moderate</b></span><span class="pg">GO</span></div></div>
+        <div class="dc"><div class="dt">&#128332; Heritage &middot; Ahmedabad</div><h3>Sidi Saiyyed Mosque</h3><p>Iconic jali stone lattice windows. A living masterpiece of carved sandstone.</p><div class="df"><span>Crowd: <b>High</b></span><span class="pm">MODIFY</span></div></div>
+        <div class="dc"><div class="dt">&#127963;&#65039; Heritage &middot; Vadnagar</div><h3>Sharmistha Lake &amp; Torans</h3><p>Twin torans and ancient lake. Serene, photogenic, rich with archaeological significance.</p><div class="df"><span>Crowd: <b>Low</b></span><span class="pg">GO</span></div></div>
+      </div></div>
+      <div class="sc2 t2"><div class="dg">
+        <div class="dc"><div class="dt">&#129409; Wildlife &middot; Gir</div><h3>Gir National Park</h3><p>The only home of Asiatic lions. Safari slots require advance booking &mdash; Oct&ndash;Apr optimal window.</p><div class="df"><span>Crowd: <b>Seasonal</b></span><span class="pg">GO</span></div></div>
+        <div class="dc"><div class="dt">&#129413; Wetland &middot; Kutch</div><h3>Rann of Kutch</h3><p>World&apos;s largest salt desert. Flamingos, white desert under moonlight, and Rann Utsav festival.</p><div class="df"><span>Crowd: <b>Festival Peak</b></span><span class="pm">MODIFY</span></div></div>
+        <div class="dc"><div class="dt">&#127807; Forest &middot; Saputara</div><h3>Saputara Hill Station</h3><p>Gujarat&apos;s only hill station. Cool forests, tribal culture, and Sunset Point at 1000m elevation.</p><div class="df"><span>Crowd: <b>Low</b></span><span class="pg">GO</span></div></div>
+      </div></div>
+      <div class="sc2 t3"><div class="dg">
+        <div class="dc"><div class="dt">&#127958;&#65039; Coast &middot; Dwarka</div><h3>Dwarka &amp; Beyt Dwarka</h3><p>Sacred coastal city. Dwarkadhish temple, boat ferry to Beyt Island, and pristine sunsets.</p><div class="df"><span>Crowd: <b>High</b></span><span class="pm">MODIFY</span></div></div>
+        <div class="dc"><div class="dt">&#128034; Eco &middot; Mandvi</div><h3>Mandvi Beach</h3><p>Windmills, traditional dhow shipbuilding, and calm blue waters. Far from tourist rush.</p><div class="df"><span>Crowd: <b>Low</b></span><span class="pg">GO</span></div></div>
+        <div class="dc"><div class="dt">&#128275; Sacred &middot; Somnath</div><h3>Somnath Temple</h3><p>Jyotirlinga temple on Arabian Sea shore. Evening aarti with crashing waves is unforgettable.</p><div class="df"><span>Crowd: <b>Moderate</b></span><span class="pg">GO</span></div></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="hd"><div></div></div>
+
+<div class="ge" id="sm">
+  <div class="gel"></div>
+  <div>
+    <div class="get">
+      <div class="gei"><i class="ph-duotone ph-train"></i></div>
+      <a href="#" class="gen">Mobility</a>
+      <div class="ged"><em>Multimodal. Real-time. Resilient.</em> YatraSetu maps your <strong>Smart Arrival Point</strong> &mdash; the exact drop-off that minimises walk, avoids chaos, and keeps your itinerary on time.</div>
+    </div>
+    <div class="geb">
+      <input type="radio" name="mt" id="m1" checked><label class="sl" for="m1">Route Plan</label>
+      <input type="radio" name="mt" id="m2"><label class="sl" for="m2">Rentals</label>
+      <div class="sc2 m1"><div class="rc">
+        <div style="font:800 11px/11px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;color:var(--accent1);margin-bottom:14px;">Ahmedabad &rarr; Rani ki Vav</div>
+        <div class="rl"><div class="rli"><i class="ph ph-train"></i></div><div class="rli2"><b>Ahmedabad Jn &rarr; Mehsana Jn</b><span>Intercity Express &middot; 1h 20m &middot; &#8377;45</span></div></div>
+        <div class="rl"><div class="rli"><i class="ph ph-bus"></i></div><div class="rli2"><b>Mehsana Bus Stand &rarr; Patan</b><span>GSRTC Ordinary &middot; 45m &middot; &#8377;22</span></div></div>
+        <div class="rl"><div class="rli"><i class="ph ph-bicycle"></i></div><div class="rli2"><b>Patan Town &rarr; Smart Arrival Point</b><span>E-rickshaw &middot; 8 min &middot; &#8377;20</span></div></div>
+        <div class="rl" style="background:rgba(34,197,94,0.07);"><div class="rli" style="background:var(--forestGreen);"><i class="ph ph-map-pin"></i></div><div class="rli2"><b>Smart Arrival Point &middot; North Stepwell Entrance</b><span>3 min walk &middot; shaded &middot; accessibility ramp &middot; free lockers</span></div></div>
+      </div></div>
+      <div class="sc2 m2"><div class="dg">
+        <div class="dc"><div class="dt">&#128757; Two-Wheeler</div><h3>Royal Enfield Meteor 350</h3><p>Daily rental. GPS tracker included. Helmets provided. &#8377;899/day with fuel top-up option.</p><div class="df"><span>&#11088; 4.8 &middot; 120 reviews</span><span class="pg">VERIFIED</span></div></div>
+        <div class="dc"><div class="dt">&#128664; Four-Wheeler</div><h3>Swift Dzire AC</h3><p>Driver-driven option available. AC, USB charging, Google Maps enabled. Great for family of 4.</p><div class="df"><span>&#11088; 4.6 &middot; 84 reviews</span><span class="pg">VERIFIED</span></div></div>
+        <div class="dc"><div class="dt">&#9889; EV</div><h3>Ola S1 Electric Scooter</h3><p>Zero emissions. 120km range. Charge point at site entrance. Perfect for heritage zones.</p><div class="df"><span>&#11088; 4.7 &middot; 57 reviews</span><span class="pm">LIMITED</span></div></div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="hd"><div></div></div>
+
+<div class="ge" id="ss">
+  <div class="gel"></div>
+  <div>
+    <div class="get">
+      <div class="gei"><i class="ph-duotone ph-shield-check"></i></div>
+      <a href="#" class="gen">Safety &amp; SOS</a>
+      <div class="ged"><em>Reality changes. Plans need to too.</em> Live safety indicators, <strong>one-tap SOS simulation</strong>, local mechanics and offline packs ensure you&apos;re never truly stuck.</div>
+    </div>
+    <div class="geb">
+      <input type="radio" name="st" id="s1" checked><label class="sl" for="s1">Live Indicators</label>
+      <input type="radio" name="st" id="s2"><label class="sl" for="s2">Mechanics</label>
+      <input type="radio" name="st" id="s3"><label class="sl" for="s3">SOS Sim</label>
+      <div class="sc2 s1"><table class="et"><thead><tr><th>Indicator</th><th>Status</th><th>Source</th><th>Updated</th></tr></thead><tbody>
+        <tr><td><span class="dg2"></span>Crowd Level</td><td>Moderate (65/100)</td><td>Visitor counter API</td><td>2h ago</td></tr>
+        <tr><td><span class="dg2"></span>Weather</td><td>Clear, 28&deg;C</td><td>IMD Open Data</td><td>1h ago</td></tr>
+        <tr><td><span class="da"></span>Road Conditions</td><td>1 minor roadwork on NH48</td><td>NHAI feed</td><td>6h ago</td></tr>
+        <tr><td><span class="dg2"></span>Mobile Coverage</td><td>4G &mdash; Jio + Airtel both good</td><td>TRAI OpenAPI</td><td>12h ago</td></tr>
+        <tr><td><span class="dg2"></span>Medical Facility</td><td>Patan Civil Hosp &mdash; 2.3 km</td><td>ASI Database</td><td>Static</td></tr>
+        <tr><td><span class="da"></span>Overall Safety</td><td>High (82/100)</td><td>Composite score</td><td>Live</td></tr>
+      </tbody></table></div>
+      <div class="sc2 s2"><div class="dg">
+        <div class="dc"><div class="dt">&#128295; 2-Wheeler &middot; Patan</div><h3>Ravi Auto Works</h3><p>On-call 7am&ndash;9pm. 15-min response within Patan city. Punctures, chain, brake repairs on site.</p><div class="df"><span>&#128222; 94278-XXXXX</span><span class="pg">ACTIVE</span></div></div>
+        <div class="dc"><div class="dt">&#128664; 4-Wheeler &middot; Mehsana</div><h3>Singh Motors</h3><p>24-hour towing available. Covers NH48 corridor. Accepts UPI.</p><div class="df"><span>&#128222; 94268-XXXXX</span><span class="pg">ACTIVE</span></div></div>
+        <div class="dc"><div class="dt">&#9889; EV Specialist</div><h3>GreenWheel Tech</h3><p>EV battery swap + mobile charging van. Covers Ahmedabad&ndash;Patan route. Pre-book recommended.</p><div class="df"><span>&#128222; 96675-XXXXX</span><span class="pm">BOOK AHEAD</span></div></div>
+      </div></div>
+      <div class="sc2 s3"><div style="background:var(--bg2);padding:36px;position:relative;max-width:560px;"><div style="position:absolute;top:0;left:0;right:0;height:5px;background:var(--crimsonDark);"></div><div style="font:900 28px/28px var(--titleFont);margin-bottom:12px;color:var(--crimsonDark);">&#128680; SOS Simulation</div><div style="font:var(--fontSize)/var(--lineHeight) var(--bodyFont);margin-bottom:20px;color:var(--bgInverse2);">This demo <strong>never contacts real emergency services.</strong><br>In production: location sharing is visible, consent-based and time-bounded.</div><div style="display:flex;gap:10px;flex-wrap:wrap;"><button onclick="alert('Location shared (simulation only)')" style="padding:12px 24px;background:var(--crimsonDark);color:#fff;border:none;font:800 13px/13px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Share Location (Sim)</button><button onclick="alert('Calling 100 (simulation only)')" style="padding:12px 24px;background:var(--bgInverse);color:var(--bg1);border:none;font:800 13px/13px var(--bodyFont);text-transform:uppercase;letter-spacing:1px;cursor:pointer;">Call 100 (Sim)</button></div><div style="margin-top:20px;padding:14px;background:var(--bg1);border-left:4px solid var(--accent2);font:var(--fontSize)/var(--lineHeight) var(--bodyFont);"><b>Nearest facility:</b> Patan Civil Hospital &mdash; 2.3 km<br><b>Connectivity:</b> 4G strong<br><b>Emergency contact:</b> Tourist Police &mdash; 1800-xxx-xxxx</div></div></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+<div style="height:80px;"></div>
+</div>
+<div id="yb"></div>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  if(localStorage.getItem("s")==="true")document.body.classList.add("sepiamode");
+  if(localStorage.getItem("d")==="true")document.body.classList.add("darkmode");
+  if(localStorage.getItem("c")==="true"){document.querySelector(".ys").classList.add("contrastmode");document.getElementById("yct").classList.add("active");}
+  var p=localStorage.getItem("p")||"p0";
+  document.getElementById("yr").className=p;
+  document.querySelectorAll(".pb").forEach(function(b){if(b.dataset.p===p)b.classList.add("active");else b.classList.remove("active");});
+  var fs=localStorage.getItem("fs")||"14",lh=localStorage.getItem("lh")||"22";
+  document.documentElement.style.setProperty("--fontSize",fs+"px");
+  document.documentElement.style.setProperty("--lineHeight",lh+"px");
+  var m=document.getElementById("ym");
+  var sv=localStorage.getItem("m")||"1";
+  if(m)m.value=sv;
+  applyMode(sv);
+})();
+function applyMode(v){
+  document.body.classList.remove("sepiamode","darkmode");
+  if(v==="2"){document.body.classList.add("sepiamode");localStorage.setItem("s","true");localStorage.removeItem("d");}
+  else if(v==="3"){document.body.classList.add("darkmode");localStorage.setItem("d","true");localStorage.removeItem("s");}
+  else{localStorage.removeItem("s");localStorage.removeItem("d");}
+}
+document.getElementById("ym").addEventListener("input",function(){applyMode(this.value);localStorage.setItem("m",this.value);});
+document.getElementById("yct").addEventListener("click",function(){
+  var ys=document.querySelector(".ys");
+  if(ys.classList.toggle("contrastmode")){localStorage.setItem("c","true");this.classList.add("active");}
+  else{localStorage.removeItem("c");this.classList.remove("active");}
+});
+document.addEventListener("DOMContentLoaded",function(){
+  var r=document.documentElement;
+  function cfs(d){var s=parseFloat(getComputedStyle(r).getPropertyValue("--fontSize"))||14;var n=Math.min(22,Math.max(10,s+d));r.style.setProperty("--fontSize",n+"px");localStorage.setItem("fs",n);}
+  function clh(d){var s=parseFloat(getComputedStyle(r).getPropertyValue("--lineHeight"))||22;var n=Math.min(34,Math.max(18,s+d));r.style.setProperty("--lineHeight",n+"px");localStorage.setItem("lh",n);}
+  document.getElementById("fu").addEventListener("click",function(){cfs(1);clh(1);});
+  document.getElementById("fd").addEventListener("click",function(){cfs(-1);clh(-1);});
+  document.getElementById("fr").addEventListener("click",function(){r.style.setProperty("--fontSize","14px");r.style.setProperty("--lineHeight","22px");localStorage.setItem("fs","14");localStorage.setItem("lh","22");});
+});
+document.querySelectorAll(".pb").forEach(function(b){
+  b.addEventListener("click",function(){
+    var p=this.dataset.p;
+    document.getElementById("yr").className=p;
+    document.querySelectorAll(".pb").forEach(function(x){x.classList.remove("active");});
+    this.classList.add("active");
+    localStorage.setItem("p",p);
+  });
+});
+</script>
+</body>
+</html>

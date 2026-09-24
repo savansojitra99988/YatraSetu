@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YatraSetu — Liquid Morphing Travel Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+/* =========================================================
+   YATRASETU — AURORA LIQUID TRAVEL DESIGN SYSTEM
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  background: #f2d6bb;
+}
+
+body {
+  overflow-x: hidden;
+  background: linear-gradient(120deg, #f7f2eb, #f5e7d7);
+  color: #211914;
+  font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* =========================================================
+   HERO CONTAINER & SUNSET LIGHTING
+========================================================= */
+
+.hero {
+  --padding: clamp(28px, 3vw, 64px);
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 30px var(--padding) 45px;
+  isolation: isolate;
+
+  background: 
+    radial-gradient(
+      ellipse 28% 32% at 68% 35%,
+      rgba(255, 251, 221, 0.92) 0%,
+      rgba(255, 239, 190, 0.58) 23%,
+      rgba(255, 219, 165, 0.25) 48%,
+      rgba(255, 199, 139, 0) 74%
+    ),
+    radial-gradient(
+      ellipse 51% 62% at 73% 48%,
+      rgba(255, 224, 175, 0.46) 0%,
+      rgba(255, 210, 158, 0.28) 31%,
+      rgba(248, 186, 128, 0.12) 59%,
+      transparent 79%
+    ),
+    radial-gradient(
+      ellipse 42% 62% at 102% 40%,
+      rgba(238, 163, 109, 0.18) 0%,
+      rgba(237, 174, 121, 0.1) 46%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 42% 28% at 69% 78%,
+      rgba(255, 207, 146, 0.14) 0%,
+      transparent 73%
+    ),
+    linear-gradient(
+      116deg,
+      #f8f4ee 0%,
+      #f7efe6 37%,
+      #f7eadc 59%,
+      #f6dfca 78%,
+      #f0cfae 100%
+    );
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  width: 52vw;
+  height: 55vw;
+  min-width: 700px;
+  min-height: 700px;
+  top: 17%;
+  right: -8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 213, 159, 0.35),
+    rgba(245, 180, 124, 0.16) 43%,
+    transparent 73%
+  );
+  filter: blur(75px);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.15),
+    transparent 42%,
+    rgba(255, 214, 174, 0.06)
+  );
+  pointer-events: none;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  position: relative;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: #211914;
+}
+
+.logo__symbol {
+  font-size: 18px;
+  color: #e8591a;
+  animation: spinStar 12s linear infinite;
+}
+
+@keyframes spinStar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.nav {
+  display: flex;
+  gap: clamp(24px, 3.5vw, 60px);
+}
+
+.nav a, .menu {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav a {
+  transition: opacity 0.25s ease, color 0.25s ease;
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; width: 0%; height: 2px;
+  background: #e8591a;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.menu {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border: 1px solid rgba(45, 31, 23, 0.2);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.menu:hover {
+  background: #211914;
+  color: #fffaf4;
+}
+
+.menu__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e8591a;
+}
+
+/* =========================================================
+   HERO BODY & CONTENT
+========================================================= */
+
+.hero__body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 90px);
+}
+
+.content {
+  position: relative;
+  z-index: 50;
+  width: min(48vw, 750px);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(20px, 4vh, 45px);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #e8591a;
+  text-transform: uppercase;
+}
+
+.eyebrow span {
+  width: 28px;
+  height: 2px;
+  background: #e8591a;
+}
+
+.content h1 {
+  margin: 0;
+  color: #211914;
+  font-size: clamp(60px, 6vw, 118px);
+  font-weight: 600;
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.content h1 span {
+  font-family: Inter, sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  color: #0d9488;
+}
+
+.intro {
+  max-width: 440px;
+  margin: clamp(28px, 4vh, 50px) 0 0;
+  color: rgba(35, 26, 20, 0.88);
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.55;
+}
+
+/* =========================================================
+   BUTTONS & ACTIONS
+========================================================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn--primary {
+  min-width: 190px;
+  padding: 16px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #e8591a 0%, #c2410c 55%, #9a3412 100%);
+  color: #fffaf4;
+  box-shadow: 
+    0 2px 4px rgba(255, 255, 255, 0.3) inset,
+    0 10px 30px rgba(232, 89, 26, 0.35);
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 2px 4px rgba(255, 255, 255, 0.4) inset,
+    0 14px 40px rgba(232, 89, 26, 0.5);
+}
+
+.btn--secondary {
+  position: relative;
+  padding: 15px 0;
+  color: #211914;
+}
+
+.btn--secondary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 24px;
+  bottom: 8px;
+  height: 2px;
+  background: rgba(46, 32, 24, 0.62);
+  transition: width 0.3s ease;
+}
+
+.btn--secondary:hover::after {
+  background: #0d9488;
+}
+
+/* =========================================================
+   META CARDS
+========================================================= */
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(650px, 100%);
+  margin-top: clamp(35px, 6vh, 75px);
+  border-top: 1px solid rgba(106, 72, 49, 0.16);
+}
+
+.meta__item {
+  position: relative;
+  min-height: 80px;
+  padding: 18px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meta__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 15px;
+  width: 1px; height: 100%;
+  background: rgba(106, 72, 49, 0.14);
+}
+
+.meta small {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(84, 58, 42, 0.55);
+  text-transform: uppercase;
+}
+
+.meta strong {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #211914;
+}
+
+.scroll-dot {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(232, 89, 26, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-dot i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e8591a;
+  animation: pulseDot 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.6); opacity: 1; }
+}
+
+/* =========================================================
+   VISUAL & SVG LIQUID SYSTEM
+========================================================= */
+
+.visual {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  right: -2vw;
+  width: min(64vw, 1180px);
+  aspect-ratio: 1.29;
+  transform: translateY(-48%);
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.visual-lighting {
+  position: absolute;
+  z-index: -10;
+  inset: -14% -16% -17% -15%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.visual-glow {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.visual-glow--ambient {
+  left: 17%; top: -1%;
+  width: 78%; height: 82%;
+  background: radial-gradient(
+    ellipse at 58% 44%,
+    rgba(255, 255, 247, 0.6) 0%,
+    rgba(255, 249, 235, 0.4) 24%,
+    rgba(255, 241, 221, 0.22) 44%,
+    rgba(255, 232, 214, 0.1) 60%,
+    transparent 80%
+  );
+  filter: blur(70px);
+  transform: scale(1.13);
+}
+
+.visual-glow--core {
+  left: 33%; top: 4%;
+  width: 54%; height: 58%;
+  background: radial-gradient(
+    ellipse at 51% 42%,
+    rgba(255, 255, 250, 0.98) 0%,
+    rgba(255, 255, 244, 0.88) 15%,
+    rgba(255, 248, 232, 0.6) 34%,
+    rgba(255, 239, 222, 0.3) 54%,
+    rgba(255, 231, 220, 0.1) 70%,
+    transparent 84%
+  );
+  filter: blur(42px);
+  transform: scale(1.18);
+}
+
+.visual-glow--sun {
+  left: 45%; top: 5%;
+  width: 31%; height: 34%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 249, 0.92) 18%,
+    rgba(255, 250, 237, 0.56) 44%,
+    rgba(255, 241, 228, 0.18) 66%,
+    transparent 84%
+  );
+  filter: blur(28px);
+  transform: scale(1.14);
+}
+
+.visual-glow--bottom {
+  left: 38%; top: 55%;
+  width: 47%; height: 31%;
+  background: radial-gradient(
+    ellipse at 52% 34%,
+    rgba(255, 246, 236, 0.3) 0%,
+    rgba(255, 237, 226, 0.16) 34%,
+    rgba(255, 226, 215, 0.08) 58%,
+    transparent 80%
+  );
+  filter: blur(54px);
+  transform: scale(1.18);
+}
+
+.visual-glow--secondary {
+  left: 12%; top: 50%;
+  width: 38%; height: 40%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 248, 0.3),
+    rgba(255, 240, 230, 0.15) 48%,
+    transparent 76%
+  );
+  filter: blur(38px);
+  transform: scale(1.08);
+}
+
+.visual-glow--drop {
+  left: 59%; top: 70%;
+  width: 24%; height: 23%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 248, 0.28),
+    rgba(255, 241, 231, 0.12) 50%,
+    transparent 76%
+  );
+  filter: blur(32px);
+  transform: scale(1.16);
+}
+
+.liquid-scene {
+  position: relative;
+  z-index: 10;
+  display: block;
+  width: 100%; height: 100%;
+  overflow: visible;
+}
+
+.bubble-warm-overlay {
+  mix-blend-mode: soft-light;
+}
+
+.bubble-edge {
+  fill: rgba(255, 255, 255, 0.02);
+  stroke: url(#glassStroke);
+  stroke-width: 4;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.98))
+    drop-shadow(0 0 7px rgba(236, 245, 255, 0.42))
+    drop-shadow(0 0 10px rgba(255, 224, 241, 0.28))
+    drop-shadow(0 14px 24px rgba(86, 70, 63, 0.08));
+}
+
+.bubble-edge--main {
+  stroke-width: 4.7;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 8px rgba(236, 245, 255, 0.48))
+    drop-shadow(0 0 13px rgba(255, 226, 242, 0.3))
+    drop-shadow(0 16px 30px rgba(86, 70, 63, 0.09));
+}
+
+.marquee {
+  pointer-events: none;
+}
+
+.marquee__text {
+  fill: #211914;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  stroke: rgba(255, 247, 235, 0.3);
+  stroke-width: 0.4px;
+}
+
+/* =========================================================
+   DESTINATIONS GRID SECTION
+========================================================= */
+
+.destinations-section {
+  position: relative;
+  z-index: 50;
+  padding: 80px var(--padding);
+  background: linear-gradient(180deg, transparent 0%, rgba(247, 242, 235, 0.95) 100%);
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 600;
+  color: #211914;
+  margin-bottom: 12px;
+}
+
+.section-header p {
+  color: rgba(35, 26, 20, 0.7);
+  font-size: 1.05rem;
+}
+
+.dest-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.liquid-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 10px 30px rgba(86, 70, 63, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.liquid-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 20px 40px rgba(232, 89, 26, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.card-img-wrap {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.liquid-card:hover .card-img-wrap img {
+  transform: scale(1.08);
+}
+
+.card-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8591a;
+  margin-bottom: 8px;
+}
+
+.liquid-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #211914;
+}
+
+.liquid-card p {
+  font-size: 14px;
+  color: rgba(35, 26, 20, 0.75);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.decision-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge-go { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.badge-mod { background: #fef9c3; color: #a16207; border: 1px solid #fde68a; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .visual { width: 68vw; right: -8vw; }
+  .content h1 { font-size: clamp(52px, 8vw, 95px); }
+}
+
+@media (max-width: 850px) {
+  .header { grid-template-columns: 1fr auto; }
+  .nav { display: none; }
+  .content { width: 100%; padding-top: 5vh; }
+  .visual { width: 110vw; right: -50vw; top: 60%; opacity: 0.85; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="#" class="logo">
+      <span class="logo__symbol">✦</span>
+      <span>YATRASETU</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#discover">DISCOVER</a>
+      <a href="#mobility">MOBILITY</a>
+      <a href="#safety">SAFETY &amp; SOS</a>
+      <a href="#trust">VERIFIED STAYS</a>
+    </nav>
+
+    <button class="menu">
+      <span class="menu__dot"></span>
+      MENU
+    </button>
+  </header>
+
+  <!-- HERO BODY -->
+  <main class="hero__body">
+    <section class="content">
+      <div class="eyebrow">
+        <span></span>
+        ADAPTIVE TRAVEL INTELLIGENCE · GUJARAT PILOT
+      </div>
+
+      <h1>
+        SCULPTED
+        <br>
+        <span>JOURNEYS</span>
+      </h1>
+
+      <p class="intro">
+        YatraSetu reads your personal travel intent alongside real-time on-ground reality, handing you a clear GO / MODIFY decision and remote resilience.
+      </p>
+
+      <div class="actions">
+        <a href="#discover" class="btn btn--primary">
+          EXPLORE DECISION ENGINE
+          <span>↗</span>
+        </a>
+
+        <a href="#mobility" class="btn btn--secondary">
+          SMART ROUTES
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="meta">
+        <div class="meta__item">
+          <small>PILOT ZONE</small>
+          <strong>GUJARAT, INDIA</strong>
+        </div>
+
+        <div class="meta__item">
+          <small>SIH 2026</small>
+          <strong>PROBLEM ID 26204</strong>
+        </div>
+
+        <div class="meta__item">
+          <small>SCROLL TO EXPLORE</small>
+          <span class="scroll-dot"><i></i></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUAL MORPHING SVG SECTION -->
+    <section class="visual" id="visual">
+      <div class="visual-lighting" aria-hidden="true">
+        <span class="visual-glow visual-glow--ambient"></span>
+        <span class="visual-glow visual-glow--core"></span>
+        <span class="visual-glow visual-glow--sun"></span>
+        <span class="visual-glow visual-glow--bottom"></span>
+        <span class="visual-glow visual-glow--secondary"></span>
+        <span class="visual-glow visual-glow--drop"></span>
+      </div>
+
+      <svg class="liquid-scene" viewBox="0 0 1100 850" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <path id="mainBubblePath" d="
+            M 305 154
+            C 430 88 638 77 781 126
+            C 906 169 978 281 961 405
+            C 945 524 858 620 735 651
+            C 631 678 558 647 494 620
+            C 434 595 380 592 322 552
+            C 247 501 204 426 218 345
+            C 231 267 258 196 305 154
+            Z
+          ">
+            <animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0; .34; .68; 1" keySplines=".42 0 .58 1; .42 0 .58 1; .42 0 .58 1" values="
+              M 305 154 C 430 88 638 77 781 126 C 906 169 978 281 961 405 C 945 524 858 620 735 651 C 631 678 558 647 494 620 C 434 595 380 592 322 552 C 247 501 204 426 218 345 C 231 267 258 196 305 154 Z;
+              M 286 171 C 411 91 626 68 792 135 C 922 187 966 296 949 420 C 929 552 829 622 722 649 C 614 677 541 627 478 617 C 405 605 345 612 297 553 C 242 486 192 415 218 324 C 241 244 244 207 286 171 Z;
+              M 321 142 C 468 78 651 91 801 145 C 916 186 988 301 955 430 C 923 551 844 634 712 656 C 600 674 540 650 468 611 C 403 575 345 592 293 533 C 230 462 216 380 234 309 C 251 240 279 170 321 142 Z;
+              M 305 154 C 430 88 638 77 781 126 C 906 169 978 281 961 405 C 945 524 858 620 735 651 C 631 678 558 647 494 620 C 434 595 380 592 322 552 C 247 501 204 426 218 345 C 231 267 258 196 305 154 Z
+            " />
+          </path>
+
+          <path id="secondaryBubblePath" d="
+            M 224 530
+            C 291 486 386 489 449 543
+            C 508 594 500 683 441 731
+            C 383 779 279 771 223 714
+            C 168 657 168 568 224 530
+            Z
+          ">
+            <animate attributeName="d" dur="11s" begin="-3s" repeatCount="indefinite" calcMode="spline" keyTimes="0; .5; 1" keySplines=".42 0 .58 1; .42 0 .58 1" values="
+              M 224 530 C 291 486 386 489 449 543 C 508 594 500 683 441 731 C 383 779 279 771 223 714 C 168 657 168 568 224 530 Z;
+              M 207 545 C 272 483 390 493 458 557 C 507 605 483 695 425 737 C 361 783 262 757 211 699 C 165 646 160 588 207 545 Z;
+              M 224 530 C 291 486 386 489 449 543 C 508 594 500 683 441 731 C 383 779 279 771 223 714 C 168 657 168 568 224 530 Z
+            " />
+          </path>
+
+          <path id="dropBubblePath" d="
+            M 645 679
+            C 686 658 741 675 758 713
+            C 776 753 747 791 704 793
+            C 665 794 627 765 629 728
+            C 630 707 632 687 645 679
+            Z
+          ">
+            <animate attributeName="d" dur="8s" begin="-5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; .5; 1" keySplines=".42 0 .58 1; .42 0 .58 1" values="
+              M 645 679 C 686 658 741 675 758 713 C 776 753 747 791 704 793 C 665 794 627 765 629 728 C 630 707 632 687 645 679 Z;
+              M 638 687 C 679 650 746 676 766 718 C 783 754 748 786 711 801 C 667 805 620 767 628 725 C 632 705 626 696 638 687 Z;
+              M 645 679 C 686 658 741 675 758 713 C 776 753 747 791 704 793 C 665 794 627 765 629 728 C 630 707 632 687 645 679 Z
+            " />
+          </path>
+
+          <clipPath id="mainBubbleClip"><use href="#mainBubblePath" /></clipPath>
+          <clipPath id="secondaryBubbleClip"><use href="#secondaryBubblePath" /></clipPath>
+          <clipPath id="dropBubbleClip"><use href="#dropBubblePath" /></clipPath>
+
+          <filter id="mainLiquidFilter" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency=".008 .010" numOctaves="2" seed="92" result="noise">
+              <animate attributeName="baseFrequency" dur="10s" repeatCount="indefinite" values=".008 .010; .010 .008; .007 .012; .008 .010" />
+            </feTurbulence>
+            <feGaussianBlur in="noise" stdDeviation="1.35" result="blurredNoise" />
+            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="86" xChannelSelector="R" yChannelSelector="G">
+              <animate attributeName="scale" dur="8s" repeatCount="indefinite" values="78; 94; 84; 90; 78" />
+            </feDisplacementMap>
+            <feColorMatrix type="matrix" values="1.02 0 0 0 0.010  0 1.01 0 0 0.008  0 0 .96 0 -0.002  0 0 0 1 0" />
+          </filter>
+
+          <radialGradient id="mainDistortionFade" gradientUnits="userSpaceOnUse" cx="590" cy="385" r="330">
+            <stop offset="0%" stop-color="white" stop-opacity="1" />
+            <stop offset="55%" stop-color="white" stop-opacity="1" />
+            <stop offset="78%" stop-color="white" stop-opacity=".52" />
+            <stop offset="100%" stop-color="black" stop-opacity="0" />
+          </radialGradient>
+
+          <mask id="mainDistortionMask" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="1100" height="850" fill="black" />
+            <ellipse cx="590" cy="385" rx="335" ry="265" fill="url(#mainDistortionFade)" />
+          </mask>
+
+          <filter id="secondaryLiquidFilter" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency=".010 .009" numOctaves="2" seed="31" result="noise">
+              <animate attributeName="baseFrequency" dur="9s" repeatCount="indefinite" values=".010 .009; .009 .012; .012 .010; .010 .009" />
+            </feTurbulence>
+            <feGaussianBlur in="noise" stdDeviation="1.2" result="blur" />
+            <feDisplacementMap in="SourceGraphic" in2="blur" scale="64" xChannelSelector="R" yChannelSelector="B">
+              <animate attributeName="scale" dur="7s" repeatCount="indefinite" values="56; 72; 61; 56" />
+            </feDisplacementMap>
+          </filter>
+
+          <filter id="dropLiquidFilter" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency=".014 .012" numOctaves="2" seed="62" result="noise">
+              <animate attributeName="baseFrequency" dur="7s" repeatCount="indefinite" values=".014 .012; .017 .010; .013 .015; .014 .012" />
+            </feTurbulence>
+            <feGaussianBlur in="noise" stdDeviation="1.05" result="blur" />
+            <feDisplacementMap in="SourceGraphic" in2="blur" scale="48" xChannelSelector="B" yChannelSelector="G" />
+          </filter>
+
+          <linearGradient id="glassStroke" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+            <stop offset="16%" stop-color="#fffdf7" stop-opacity=".96" />
+            <stop offset="28%" stop-color="#dff6ff" stop-opacity=".55" />
+            <stop offset="44%" stop-color="#fff8fe" stop-opacity=".36" />
+            <stop offset="60%" stop-color="#ffdff2" stop-opacity=".34" />
+            <stop offset="76%" stop-color="#d8f6ff" stop-opacity=".36" />
+            <stop offset="90%" stop-color="#fff7ef" stop-opacity=".70" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity=".96" />
+          </linearGradient>
+
+          <radialGradient id="mainInnerMilk" cx="48%" cy="16%" r="70%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".34" />
+            <stop offset="18%" stop-color="#fffdf8" stop-opacity=".22" />
+            <stop offset="40%" stop-color="#fff7ef" stop-opacity=".08" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </radialGradient>
+
+          <radialGradient id="mainBottomPearl" cx="40%" cy="92%" r="48%">
+            <stop offset="0%" stop-color="#ffdff1" stop-opacity=".14" />
+            <stop offset="34%" stop-color="#e9dfff" stop-opacity=".08" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </radialGradient>
+
+          <linearGradient id="mainIridescentSheen" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".20" />
+            <stop offset="16%" stop-color="#dff6ff" stop-opacity=".16" />
+            <stop offset="33%" stop-color="#ffffff" stop-opacity=".08" />
+            <stop offset="58%" stop-color="#ffe1f4" stop-opacity=".07" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+
+          <radialGradient id="specHot" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".95" />
+            <stop offset="30%" stop-color="#ffffff" stop-opacity=".52" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </radialGradient>
+
+          <radialGradient id="specSoft" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity=".55" />
+            <stop offset="42%" stop-color="#ffffff" stop-opacity=".16" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- MAIN PARALLAX BUBBLE -->
+        <g id="mainParallax">
+          <g>
+            <animateTransform attributeName="transform" type="translate" dur="8.5s" repeatCount="indefinite" calcMode="spline" keyTimes="0; .3; .65; 1" keySplines=".42 0 .58 1; .42 0 .58 1; .42 0 .58 1" values="0 0; 7 -24; -5 -10; 0 0" />
+
+            <g clip-path="url(#mainBubbleClip)">
+              <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="125" y="40" width="930" height="720" preserveAspectRatio="xMidYMid slice" />
+              <rect x="0" y="0" width="1100" height="850" fill="url(#mainInnerMilk)" />
+              <rect x="0" y="0" width="1100" height="850" fill="url(#mainIridescentSheen)" />
+              <rect x="0" y="0" width="1100" height="850" fill="url(#mainBottomPearl)" />
+              <ellipse cx="406" cy="218" rx="48" ry="38" fill="url(#specHot)" transform="rotate(-18 406 218)" />
+              <ellipse cx="438" cy="164" rx="18" ry="14" fill="url(#specSoft)" transform="rotate(-18 438 164)" />
+              <ellipse cx="836" cy="286" rx="16" ry="13" fill="url(#specSoft)" />
+              <ellipse cx="365" cy="678" rx="13" ry="11" fill="url(#specSoft)" />
+            </g>
+
+            <g clip-path="url(#mainBubbleClip)" mask="url(#mainDistortionMask)" filter="url(#mainLiquidFilter)" opacity=".90">
+              <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="125" y="40" width="930" height="720" preserveAspectRatio="xMidYMid slice" />
+            </g>
+
+            <!-- MARQUEE PATH -->
+            <g class="marquee">
+              <text class="marquee__text" dy="-14">
+                <textPath href="#mainBubblePath" startOffset="0%">
+                  YATRASETU GUJARAT PILOT ✦ DECISION ENGINE ✦ SMART MOBILITY ✦ SAFETY RESILIENCE ✦ ADAPTIVE TRAVEL ✦
+                  <animate attributeName="startOffset" from="0%" to="100%" dur="22s" repeatCount="indefinite" />
+                </textPath>
+              </text>
+              <text class="marquee__text" dy="-14">
+                <textPath href="#mainBubblePath" startOffset="-100%">
+                  YATRASETU GUJARAT PILOT ✦ DECISION ENGINE ✦ SMART MOBILITY ✦ SAFETY RESILIENCE ✦ ADAPTIVE TRAVEL ✦
+                  <animate attributeName="startOffset" from="-100%" to="0%" dur="22s" repeatCount="indefinite" />
+                </textPath>
+              </text>
+            </g>
+
+            <use href="#mainBubblePath" class="bubble-edge bubble-edge--main" />
+          </g>
+        </g>
+
+        <!-- SECONDARY PARALLAX BUBBLE -->
+        <g id="secondaryParallax">
+          <g>
+            <animateTransform attributeName="transform" type="translate" dur="7s" begin="-2s" repeatCount="indefinite" calcMode="spline" keyTimes="0; .5; 1" keySplines=".42 0 .58 1; .42 0 .58 1" values="0 0; -14 -30; 0 0" />
+
+            <g filter="url(#secondaryLiquidFilter)" clip-path="url(#secondaryBubbleClip)">
+              <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="60" y="230" width="720" height="650" preserveAspectRatio="xMidYMid slice" />
+              <rect x="0" y="0" width="1100" height="850" fill="#efad69" opacity=".06" class="bubble-warm-overlay" />
+            </g>
+            <use href="#secondaryBubblePath" class="bubble-edge" />
+          </g>
+        </g>
+
+        <!-- DROP PARALLAX BUBBLE -->
+        <g id="dropParallax">
+          <g>
+            <animateTransform attributeName="transform" type="translate" dur="6s" begin="-4s" repeatCount="indefinite" calcMode="spline" keyTimes="0; .5; 1" keySplines=".42 0 .58 1; .42 0 .58 1" values="0 0; 15 -34; 0 0" />
+
+            <g filter="url(#dropLiquidFilter)" clip-path="url(#dropBubbleClip)">
+              <image href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=90" x="450" y="470" width="520" height="440" preserveAspectRatio="xMidYMid slice" />
+            </g>
+            <use href="#dropBubblePath" class="bubble-edge" />
+          </g>
+        </g>
+
+      </svg>
+    </section>
+  </main>
+</div>
+
+<!-- DESTINATIONS SECTION -->
+<section class="destinations-section" id="discover">
+  <div class="section-header">
+    <h2>Reality-Checked Destinations</h2>
+    <p>Transparent suitability scoring matching traveller intent with real conditions</p>
+  </div>
+
+  <div class="dest-cards-grid">
+    <div class="liquid-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1609946782787-84d413b1ecbb?auto=format&fit=crop&w=800&q=80" alt="Rani ki Vav">
+      </div>
+      <div class="card-tag">🏛️ Heritage · Patan</div>
+      <h3>Rani ki Vav Stepwell</h3>
+      <p>11th-century UNESCO World Heritage stepwell with intricate sculptural panels across 7 subterranean levels.</p>
+      <div class="card-badge-row">
+        <span style="font-size:12px;font-weight:700;">Crowd: Low</span>
+        <span class="decision-badge badge-go">GO RECOMMENDED</span>
+      </div>
+    </div>
+
+    <div class="liquid-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?auto=format&fit=crop&w=800&q=80" alt="Gir Forest">
+      </div>
+      <div class="card-tag">🦁 Wildlife · Sasan Gir</div>
+      <h3>Gir National Park</h3>
+      <p>The only natural sanctuary of the Asiatic Lion. Oct–Apr safari window with guided wilderness tracks.</p>
+      <div class="card-badge-row">
+        <span style="font-size:12px;font-weight:700;">Crowd: Seasonal</span>
+        <span class="decision-badge badge-go">GO RECOMMENDED</span>
+      </div>
+    </div>
+
+    <div class="liquid-card">
+      <div class="card-img-wrap">
+        <img src="https://images.unsplash.com/photo-1609946782787-84d413b1ecbb?auto=format&fit=crop&w=800&q=80" alt="Rann of Kutch">
+      </div>
+      <div class="card-tag">🌾 Salt Desert · Kutch</div>
+      <h3>White Rann of Kutch</h3>
+      <p>Endless white salt desert under full-moon light. Rann Utsav grounds and flamingo migratory wetlands.</p>
+      <div class="card-badge-row">
+        <span style="font-size:12px;font-weight:700;">Crowd: High Peak</span>
+        <span class="decision-badge badge-mod">MODIFY TIME</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOUSE PARALLAX SCRIPT -->
+<script>
+const mainBubble = document.querySelector("#mainParallax");
+const secondaryBubble = document.querySelector("#secondaryParallax");
+const dropBubble = document.querySelector("#dropParallax");
+
+const PARALLAX_INTENSITY = 0.55;
+const PARALLAX_SMOOTHNESS = 0.03;
+
+let targetX = 0;
+let targetY = 0;
+let currentX = 0;
+let currentY = 0;
+
+window.addEventListener("pointermove", (event) => {
+  const normalizedX = event.clientX / window.innerWidth - 0.5;
+  const normalizedY = event.clientY / window.innerHeight - 0.5;
+  targetX = normalizedX * 180 * PARALLAX_INTENSITY;
+  targetY = normalizedY * 130 * PARALLAX_INTENSITY;
+});
+
+document.documentElement.addEventListener("mouseleave", () => {
+  targetX = 0;
+  targetY = 0;
+});
+
+function render() {
+  currentX += (targetX - currentX) * PARALLAX_SMOOTHNESS;
+  currentY += (targetY - currentY) * PARALLAX_SMOOTHNESS;
+
+  if (mainBubble) mainBubble.style.transform = `translate(${currentX}px, ${currentY}px)`;
+  if (secondaryBubble) secondaryBubble.style.transform = `translate(${currentX * 1.55}px, ${currentY * 1.55}px)`;
+  if (dropBubble) dropBubble.style.transform = `translate(${currentX * 2.15}px, ${currentY * 2.15}px)`;
+
+  requestAnimationFrame(render);
+}
+
+render();
+</script>
+</body>
+</html>

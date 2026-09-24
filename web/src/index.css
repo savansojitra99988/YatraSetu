@@ -1,0 +1,359 @@
+/* ============================================================
+   YatraSetu — Indian Heritage Design System
+   ============================================================
+   DESIGN ZONE: Safe to modify all values below.
+   Use var(--token) in all component CSS — never hardcode hex.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap');
+
+/* ── Colour Palette ─────────────────────────────────────── */
+:root {
+  /* Aurora Warm Golden Hour Travel Palette */
+  --bg-primary:       #f7f2eb;
+  --bg-secondary:     #f5e7d7;
+  --bg-sidebar:       rgba(255, 255, 255, 0.75);
+  --bg-hover:         rgba(232, 89, 26, 0.08);
+  --bg-active:        rgba(13, 148, 136, 0.12);
+  --bg-panel:         rgba(255, 255, 255, 0.65);
+
+  /* Travel Accents */
+  --accent-saffron:   #e8591a;   /* Sunset Saffron */
+  --accent-gold:      #d4a017;   /* Golden Hour */
+  --accent-teal:      #0d9488;   /* Peacock Teal */
+  --accent-crimson:   #c0392b;   /* Royal Terracotta */
+  --accent-indigo:    #4f46e5;
+  --accent-green:     #16a34a;
+  --accent-amber:     #d97706;
+  --accent-red:       #dc2626;
+
+  /* Text */
+  --text-primary:     #211914;   /* Deep Sandalwood Bark */
+  --text-secondary:   rgba(35, 26, 20, 0.75);
+  --text-muted:       rgba(84, 58, 42, 0.55);
+
+  /* Borders */
+  --border-color:     rgba(45, 31, 23, 0.12);
+  --border-strong:    rgba(232, 89, 26, 0.3);
+
+  /* Glassmorphism */
+  --glass-blur:       16px;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body:    Inter, system-ui, sans-serif;
+}
+
+/* ── Reset & Base ───────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+
+  /* Subtle jaali (jali lattice) dot pattern overlay */
+  background-image:
+    radial-gradient(circle, rgba(212,160,23,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Headings use the heritage serif font */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+  margin-top: 0;
+}
+
+h4, h5, h6, p, span, label, button, input, select, textarea {
+  margin-top: 0;
+  font-family: var(--font-body);
+}
+
+button, select, textarea, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ── Glassmorphism Panel (Heritage Edition) ─────────────── */
+/* 
+  DESIGN NOTE: This is the primary surface for all cards/panels.
+  Override per-component by adding additional background styles.
+*/
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  /* Top border glows gold like temple gilding */
+  box-shadow:
+    0 1px 0 0 rgba(212, 160, 23, 0.3),
+    0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Shared Badge Row (used across all pages) ──────────── */
+.badge-row {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Heritage badge variants */
+.pill-saffron {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.35);
+}
+
+.pill-purple {
+  background: rgba(79, 70, 229, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+}
+
+.pill-gold {
+  background: rgba(212, 160, 23, 0.18);
+  color: #f5c842;
+  border: 1px solid rgba(212, 160, 23, 0.4);
+}
+
+.pill-blue {
+  background: rgba(13, 148, 136, 0.15);
+  color: #5eead4;
+  border: 1px solid rgba(13, 148, 136, 0.3);
+}
+
+.pill-green {
+  background: rgba(22, 163, 74, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(22, 163, 74, 0.3);
+}
+
+.pill-red {
+  background: rgba(220, 38, 38, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+/* ── Shared Sub-label (used across all pages) ────────────── */
+.sub-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Text helpers ────────────────────────────────────────── */
+.text-green   { color: #4ade80; }
+.text-amber   { color: #fbbf24; }
+.text-red     { color: #f87171; }
+.text-gold    { color: var(--accent-gold); }
+.text-teal    { color: var(--accent-teal); }
+.text-blue    { color: #60a5fa; }
+.text-purple  { color: #a5b4fc; }
+.text-secondary { color: var(--text-secondary); }
+
+/* ── Icon badge containers ───────────────────────────────── */
+.icon-blue   { background: rgba(13, 148, 136, 0.18); color: #5eead4; }
+.icon-green  { background: rgba(22, 163, 74, 0.18);  color: #4ade80; }
+.icon-red    { background: rgba(220, 38, 38, 0.18);  color: #f87171; }
+.icon-purple { background: rgba(79, 70, 229, 0.18);  color: #a5b4fc; }
+.icon-gold   { background: rgba(212, 160, 23, 0.18); color: #f5c842; }
+
+/* ── Primary & Secondary Buttons (global) ───────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, var(--accent-saffron), #ea580c);
+  color: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 16px rgba(249, 115, 22, 0.35);
+  font-family: var(--font-body);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(249, 115, 22, 0.52);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(212, 160, 23, 0.08);
+  color: var(--text-primary);
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-strong);
+  transition: all 0.22s ease;
+  font-family: var(--font-body);
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 160, 23, 0.15);
+}
+
+.btn-saved {
+  background: rgba(22, 163, 74, 0.18);
+  color: #4ade80;
+  border-color: rgba(22, 163, 74, 0.4);
+}
+
+/* ── Ornamental divider (reuse anywhere) ─────────────────── */
+.heritage-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.heritage-divider::before,
+.heritage-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+
+/* ── Scrollbar styling ─────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
+/* ── DermExcel Claymorphic & Grid Overlay Additions ────── */
+.grid-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  color: var(--bg-dark);
+  background: var(--text-main);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chunky-btn {
+  box-shadow: 0px 4px 0px rgba(161, 161, 170, 0.4),
+    0px 6px 10px rgba(0, 0, 0, 0.4),
+    inset 0px -2px 5px rgba(0, 0, 0, 0.1),
+    inset 0px 2px 5px rgba(255, 255, 255, 0.8);
+}
+.chunky-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 0px rgba(161, 161, 170, 0.4),
+    0px 2px 5px rgba(0, 0, 0, 0.4), inset 0px -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.menu-btn {
+  background: var(--clay-base);
+  color: var(--text-main);
+  box-shadow: 0px 4px 0px #09090a, 0px 6px 10px rgba(0, 0, 0, 0.6),
+    inset 1px 1px 2px var(--clay-inset-light);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chunky-badge {
+  background: var(--clay-base);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 4px 4px 8px var(--clay-shadow),
+    inset 2px 2px 4px var(--clay-inset-light),
+    inset -2px -2px 4px var(--clay-inset-dark);
+}
+
+.clay-card {
+  position: absolute;
+  width: 160px;
+  height: 220px;
+  left: -80px;
+  top: -110px;
+  background: var(--clay-base);
+  border-radius: 16px;
+  padding: 8px;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 8px 8px 16px var(--clay-shadow),
+    -4px -4px 10px rgba(255, 255, 255, 0.02),
+    inset 3px 3px 6px var(--clay-inset-light),
+    inset -3px -3px 6px var(--clay-inset-dark);
+  transition: filter 0.4s ease;
+}
+
+.clay-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: grayscale(80%) brightness(0.6);
+  transition: all 0.4s ease;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.clay-card.active-card {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+}
+.clay-card.active-card img {
+  filter: grayscale(0%) brightness(1);
+}

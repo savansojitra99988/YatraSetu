@@ -1,0 +1,486 @@
+.safety-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.safety-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.safety-header h2 {
+  font-size: 1.8rem;
+  margin: 0.25rem 0;
+}
+
+.btn-trigger-sos {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 0.75rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  transition: all 0.2s ease;
+}
+
+.btn-trigger-sos:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+}
+
+/* SOS Active Banner */
+.sos-banner {
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.sos-banner-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.pulse-red {
+  width: 12px;
+  height: 12px;
+  background: #ef4444;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ef4444;
+  animation: pulse 1.5s infinite;
+}
+
+.sos-banner-head h3 {
+  font-size: 1.1rem;
+  color: #f87171;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.sos-banner-head p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0.2rem 0 0;
+}
+
+.sos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sos-box {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.85rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sos-sub {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.sos-box strong {
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.sos-box small {
+  font-size: 0.75rem;
+  color: #93c5fd;
+}
+
+.btn-cancel-sos {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Remote Warning Banner */
+.remote-warning-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.75rem;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.remote-warn-text {
+  flex: 1;
+}
+
+.remote-warn-text h4 {
+  font-size: 0.95rem;
+  color: #fbbf24;
+  margin: 0 0 0.2rem;
+}
+
+.remote-warn-text p {
+  font-size: 0.85rem;
+  color: #fef3c7;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.btn-offline-quick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.btn-offline-quick.saved {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}
+
+/* 2-Col Layout */
+.safety-layout-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.5rem;
+}
+
+.safety-indicator-card,
+.support-tools-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.safety-indicator-card {
+  padding: 1.75rem;
+  border-radius: 16px;
+}
+
+.indicator-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.indicator-top h3 {
+  font-size: 1.35rem;
+  margin: 0.25rem 0;
+}
+
+.safety-score-pill {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.safety-score-pill strong {
+  font-size: 1.4rem;
+  color: #34d399;
+}
+
+.safety-score-pill small {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.safety-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0.25rem 0 0;
+}
+
+/* Infra Stats */
+.infra-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.infra-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.stat-val {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.infra-stat strong {
+  font-size: 0.95rem;
+}
+
+/* Factors */
+.factors-section h4 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.factor-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.factor-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.dot-optimal { background: #10b981; }
+.dot-moderate { background: #f59e0b; }
+.dot-critical { background: #ef4444; }
+
+.factor-info {
+  flex: 1;
+}
+
+.factor-name-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.factor-name-row small {
+  font-size: 0.7rem;
+  color: #71717a;
+}
+
+.factor-info p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.road-condition-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+/* Mechanic Card */
+.mechanic-card,
+.offline-pack-card {
+  padding: 1.5rem;
+  border-radius: 14px;
+}
+
+.mech-card-header,
+.offline-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mech-card-header h3,
+.offline-card-top h3 {
+  font-size: 1.1rem;
+  margin: 0.2rem 0;
+}
+
+.mech-intro,
+.offline-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-top: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.mechanics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mech-item {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mech-info-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mech-info-top h4 {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.mech-shop {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.mech-dist {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.mech-dist strong {
+  font-size: 0.95rem;
+  color: #60a5fa;
+}
+
+.mech-available-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #34d399;
+}
+
+.mech-spec {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.mech-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.5rem;
+}
+
+.mech-fee {
+  font-size: 0.75rem;
+  color: #e4e4e7;
+}
+
+.btn-call-mech {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.btn-requested {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #34d399;
+}
+
+/* Offline Pack */
+.offline-bundle-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.bundle-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.bundle-stat span {
+  color: var(--text-secondary);
+}
+
+.btn-offline-toggle {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-offline-toggle.btn-synced {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+}

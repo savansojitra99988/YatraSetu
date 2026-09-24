@@ -1,0 +1,24 @@
+# Internal context, logs, and skills — not pushed to public repo
+context/
+logs/
+skills/
+
+# Dependencies
+node_modules/
+.next/
+dist/
+build/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
