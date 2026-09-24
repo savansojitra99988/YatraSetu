@@ -2,11 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { 
-  Sparkles, 
   ShieldAlert, 
   ArrowRight, 
-  Award, 
-  Download, 
   Navigation,
   Compass
 } from 'lucide-react';
@@ -17,13 +14,10 @@ export default function Dashboard() {
     selectedDestination, 
     evaluation, 
     yatraPoints, 
-    offlinePacksDownloaded, 
-    toggleOfflinePack,
     isEvaluating 
   } = useApp();
   
   const navigate = useNavigate();
-  const isOfflineSaved = offlinePacksDownloaded.includes(selectedDestination.id);
 
   const mainBubbleRef = useRef<SVGGElement>(null);
   const secondaryBubbleRef = useRef<SVGGElement>(null);
@@ -223,7 +217,7 @@ export default function Dashboard() {
                 </radialGradient>
               </defs>
 
-              <!-- Main Parallax Layer -->
+              {/* Main Parallax Layer */}
               <g id="mainParallax" ref={mainBubbleRef}>
                 <g>
                   <g clipPath="url(#mainBubbleClip)">

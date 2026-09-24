@@ -105,7 +105,7 @@ export default function Mobility() {
             <div className="facilities-cluster">
               <span className="fac-label">Verified Arrival Facilities:</span>
               <div className="facilities-tags">
-                {selectedDestination.arrivalPoint.facilities.map((f, i) => (
+                {(Array.isArray(selectedDestination.arrivalPoint.facilities) ? selectedDestination.arrivalPoint.facilities : [selectedDestination.arrivalPoint.facilities]).map((f: any, i: number) => (
                   <span className="fac-tag" key={i}>
                     <CheckCircle size={12} /> {f}
                   </span>

@@ -191,7 +191,7 @@ export default function Safety() {
           <div className="factors-section">
             <h4>Live Risk & Condition Factors</h4>
             <div className="factors-list">
-              {safety.factors.map((f, fi) => (
+              {safety.factors.map((f: any, fi: number) => (
                 <div className="factor-row" key={fi}>
                   <div className={`factor-status-dot dot-${f.status}`}></div>
                   <div className="factor-info">
@@ -228,7 +228,7 @@ export default function Safety() {
             </p>
 
             <div className="mechanics-list">
-              {selectedDestination.mechanics.map((mech) => (
+              {selectedDestination.mechanics.map((mech: any) => (
                 <div className="mech-item" key={mech.id}>
                   <div className="mech-info-top">
                     <div>
